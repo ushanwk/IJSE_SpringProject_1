@@ -94,7 +94,7 @@ $('#btnCusDelete').click(function(){
     let cusId = $('#txtCustomerID').val();
 
     $.ajax({
-        url: linkCus + '?cusID=' + cusId,
+        url: linkCus + '?id=' + cusId,
         method: "delete",
         success: function(){
             clearCusField();

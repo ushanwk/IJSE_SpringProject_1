@@ -6,6 +6,7 @@ import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.repo.CustomerRepo;
 import lk.ijse.spring.service.CustomerService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,21 +31,25 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(String id) {
-
+        repo.deleteById(id);
     }
 
     @Override
     public List<CustomerDTO> getAllCustomer() {
-        return null;
+        List<Customer> all = repo.findAll();
+        return mapper.map(all, new TypeToken<List<CustomerDTO>>() {
+        }.getType());
     }
 
     @Override
     public CustomerDTO findCustomer(String id) {
-        return null;
+        Customer customer = repo.findById(id).get();
+        return mapper.map(customer,CustomerDTO.class);
     }
 
     @Override
     public void updateCustomer(CustomerDTO c) {
-
+        Customer map = mapper.map(c, Customer.class);
+        repo.save(map);
     }
 }
