@@ -1,4 +1,4 @@
-let linkItem = "http://localhost:8080/Back_End_Web_exploded/item";
+let linkItem = "http://localhost:8080/Back_End_war/item";
 
 loadAllItems();
 
